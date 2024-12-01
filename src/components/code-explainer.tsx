@@ -4,20 +4,12 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import CodeInput from './code-input'
-import { Code2, BookOpen, Wand2 } from 'lucide-react'
+import { Code2, Wand2 } from 'lucide-react'
+import { useCodeExplainer } from '@/hooks/use-code-explainer'
 
-export default function CodeExplainer() {
-  const [code, setCode] = useState('')
-  const [explanation, setExplanation] = useState('')
-  const [isProcessing, setIsProcessing] = useState(false)
-
-  const handleExplain = async () => {
-    setIsProcessing(true)
-    // Simular o processamento do código
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    setExplanation(`Explicação simulada para o código:\n\n${code}`)
-    setIsProcessing(false)
-  }
+export const CodeExplainer = () => {
+  const [code, setCode] = useState('');
+  const { generateExplanation } = useCodeExplainer();
 
   return (
     <Card className="w-full max-w-4xl mx-auto bg-transparent border-none">
@@ -32,12 +24,12 @@ export default function CodeExplainer() {
       </CardContent>
       <CardFooter>
         <Button
-          onClick={handleExplain}
-          disabled={!code.trim() || isProcessing}
+          onClick={() => generateExplanation(code.trim())}
+          disabled={!code.trim()}
           className="w-full bg-violet-600 hover:brightness-75 cursor-pointer transition-all duration-300 font-semibold"
         >
           <Wand2 className="w-4 h-4" />
-          {isProcessing ? 'Processando...' : 'Explicar Código'}
+          Explicar Código
         </Button>
       </CardFooter>
     </Card>

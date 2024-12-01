@@ -1,16 +1,29 @@
-import CodeExplainer from "@/components/code-explainer";
-import { Code2 } from "lucide-react";
+'use client';
+
+import { CodeExplainer } from "@/components/code-explainer";
+import { useCodeExplainer } from "@/hooks/use-code-explainer";
+import BubbleAnimation from "@/assets/bubble-animation.svg";
+import { CodeExplanation } from "@/components/code-explanation";
+import { Logo } from "@/components/logo";
 
 export default function Page() {
+  const { isGeneratingExplanation, explanation } = useCodeExplainer();
+
   return (
     <div className="min-h-screen bg-[#0A0D10]">
       <main className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold text-center mb-[80px] text-gray-300">
-          <Code2 className="inline-block w-11 h-11 mr-3 text-violet-600" />
-          Code <span className="border-b-4 border-b-violet-600">Explainer</span>
-        </h1>
+        <Logo />
 
-        <CodeExplainer />
+        {isGeneratingExplanation ? (
+          <div className="w-fit mx-auto mt-[200px] flex flex-col items-center justify-center gap-10">
+            <BubbleAnimation />
+            <p className="text-violet-600 font-medium tracking-wide">Estamos gerando a explicação do seu código, aguarde...</p>
+          </div>
+        ) : (
+          <>
+            {!explanation ? <CodeExplainer /> : <CodeExplanation />}
+          </>
+        )}
       </main>
     </div>
   );

@@ -2,10 +2,6 @@
 
 import { useEffect, useRef } from 'react'
 import Prism from 'prismjs'
-import 'prismjs/components/prism-javascript'
-import 'prismjs/components/prism-jsx'
-import 'prismjs/components/prism-typescript'
-import 'prismjs/components/prism-tsx'
 import 'prismjs/components/prism-css'
 
 interface CodeInputProps {
@@ -38,12 +34,6 @@ export default function CodeInput({ code, setCode }: CodeInputProps) {
     setCode(content);
   };
 
-  const handlePaste = (event: React.ClipboardEvent<HTMLPreElement>) => {
-    event.preventDefault();
-    const text = event.clipboardData.getData('text/plain');
-    document.execCommand('insertText', false, text);
-  };
-
   return (
     <div className="relative bg-[##1a1d20] rounded-md overflow-hidden -mt-3">
       <pre
@@ -51,7 +41,6 @@ export default function CodeInput({ code, setCode }: CodeInputProps) {
         contentEditable
         suppressContentEditableWarning
         onInput={handleInput}
-        onPaste={handlePaste}
         className="w-full h-[300px] p-4 font-mono text-sm bg-[#1A1D20] text-gray-400 outline-none overflow-auto whitespace-pre-wrap break-words"
         style={{ tabSize: 2 }}
       >
