@@ -5,13 +5,13 @@ import { dracula } from "@uiw/codemirror-theme-dracula";
 import { FC, useState } from "react";
 
 type CodeEditorProps = {
-  code: string
-  setCode: (code: string) => void
+  code: string;
+  setCode: (code: string) => void;
+  isDone: boolean;
+  setIsDone: (isDone: boolean) => void;
 }
 
-export const CodeEditor: FC<CodeEditorProps> = ({ code, setCode }) => {
-  const [isDone, setIsDone] = useState(false);
-
+export const CodeEditor: FC<CodeEditorProps> = ({ code, setCode, isDone, setIsDone }) => {
   return (
     <>
       <CodeMirror

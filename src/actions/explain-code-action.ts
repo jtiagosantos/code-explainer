@@ -6,7 +6,9 @@ import { openai } from '@/lib/openai';
 import { actionClient } from '@/lib/safe-action';
 
 const inputSchema = z.object({
-  code: z.string(),
+  code: z.string().max(5000, {
+    message: `⚠️ Limite de caracteres excedido. Por favor, limite seu código a ${5000} caracteres.`,
+  }),
 });
 
 const outputSchema = z.object({
