@@ -3,9 +3,9 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import CodeInput from './code-input'
 import { Code2, Wand2 } from 'lucide-react'
 import { useCodeExplainer } from '@/hooks/use-code-explainer'
+import { CodeEditor } from './code-editor'
 
 export const CodeExplainer = () => {
   const [code, setCode] = useState('');
@@ -20,7 +20,7 @@ export const CodeExplainer = () => {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <CodeInput code={code} setCode={setCode} />
+        <CodeEditor code={code} setCode={setCode} />
       </CardContent>
       <CardFooter>
         <Button
