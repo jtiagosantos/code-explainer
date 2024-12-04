@@ -5,7 +5,7 @@ export const AuthModal = () => {
   return (
     <Modal.Root>
       <Modal.Content>
-        <SignIn />
+        <SignIn fallbackRedirectUrl="/" routing="hash" />
       </Modal.Content>
     </Modal.Root>
   );
