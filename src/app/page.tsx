@@ -5,13 +5,8 @@ import { useCodeExplainer } from "@/hooks/use-code-explainer";
 import BubbleAnimation from "@/assets/bubble-animation.svg";
 import { CodeExplanation } from "@/components/code-explanation";
 import { Logo } from "@/components/logo";
-import { FC } from "react";
 
-type PageComponentProps = {
-  isSigned: boolean;
-}
-
-export const PageComponent: FC<PageComponentProps> = ({ isSigned }) => {
+export default function Page() {
   const { isGeneratingExplanation, explanation } = useCodeExplainer();
 
   return (
@@ -26,7 +21,7 @@ export const PageComponent: FC<PageComponentProps> = ({ isSigned }) => {
           </div>
         ) : (
           <>
-            {!explanation ? <CodeExplainer isSigned={isSigned} /> : <CodeExplanation />}
+            {!explanation ? <CodeExplainer /> : <CodeExplanation />}
           </>
         )}
       </main>

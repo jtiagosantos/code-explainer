@@ -3,16 +3,12 @@
 import { FC, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { CircleAlert, Code2, KeyRound, Wand2 } from 'lucide-react'
+import { CircleAlert, Code2, Wand2 } from 'lucide-react'
 import { useCodeExplainer } from '@/hooks/use-code-explainer'
 import { CodeEditor } from './code-editor'
 import { CHARACTERES_LIMIT } from '@/contexts/code-explainer'
 
-type CodeExplainerProps = {
-  isSigned: boolean;
-}
-
-export const CodeExplainer: FC<CodeExplainerProps> = ({ isSigned }) => {
+export const CodeExplainer = () => {
   const [code, setCode] = useState('');
   const [isCodeEditorDone, setIsCodeEditorDone] = useState(false);
   const { generateExplanation } = useCodeExplainer();
@@ -49,23 +45,14 @@ export const CodeExplainer: FC<CodeExplainerProps> = ({ isSigned }) => {
           )}
         </CardContent>
         <CardFooter>
-          {isSigned ? (
-            <Button
-              onClick={() => generateExplanation(code.trim())}
-              disabled={!code.trim() || code.length > CHARACTERES_LIMIT}
-              className="w-full bg-violet-600 hover:brightness-75 cursor-pointer transition-all duration-300 font-semibold"
-            >
-              <Wand2 className="w-4 h-4" />
-              Explicar Código
-            </Button>
-          ) : (
-            <Button
-              className="w-full bg-violet-600 hover:brightness-75 cursor-pointer transition-all duration-300 font-semibold"
-            >
-              <KeyRound className="w-4 h-4" />
-              Fazer Autenticação
-            </Button>
-          )}
+          <Button
+            onClick={() => generateExplanation(code.trim())}
+            disabled={!code.trim() || code.length > CHARACTERES_LIMIT}
+            className="w-full bg-violet-600 hover:brightness-75 cursor-pointer transition-all duration-300 font-semibold"
+          >
+            <Wand2 className="w-4 h-4" />
+            Explicar Código
+          </Button>
         </CardFooter>
       </Card>
     </>
