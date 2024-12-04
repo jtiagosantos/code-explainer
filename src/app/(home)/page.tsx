@@ -1,8 +1,7 @@
-import { currentUser } from "@clerk/nextjs/server";
 import { PageComponent } from "./page-component";
 
 export default async function Page() {
-  const user = await currentUser();
+  const user = true;
 
   return (
     <PageComponent isSigned={!!user} />

@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/nextjs": "^6.5.2",
     "@radix-ui/react-slot": "^1.1.0",
     "@svgr/webpack": "^8.1.0",
     "@uiw/codemirror-theme-dracula": "^4.23.6",

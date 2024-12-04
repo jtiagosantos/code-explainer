@@ -7,7 +7,6 @@ import { CircleAlert, Code2, KeyRound, Wand2 } from 'lucide-react'
 import { useCodeExplainer } from '@/hooks/use-code-explainer'
 import { CodeEditor } from './code-editor'
 import { CHARACTERES_LIMIT } from '@/contexts/code-explainer'
-import { AuthModal } from './auth-modal'
 
 type CodeExplainerProps = {
   isSigned: boolean;
@@ -16,7 +15,6 @@ type CodeExplainerProps = {
 export const CodeExplainer: FC<CodeExplainerProps> = ({ isSigned }) => {
   const [code, setCode] = useState('');
   const [isCodeEditorDone, setIsCodeEditorDone] = useState(false);
-  const [openAuthModal, setOpenAuthModal] = useState(false);
   const { generateExplanation } = useCodeExplainer();
 
   return (
@@ -62,7 +60,6 @@ export const CodeExplainer: FC<CodeExplainerProps> = ({ isSigned }) => {
             </Button>
           ) : (
             <Button
-              onClick={() => setOpenAuthModal(true)}
               className="w-full bg-violet-600 hover:brightness-75 cursor-pointer transition-all duration-300 font-semibold"
             >
               <KeyRound className="w-4 h-4" />
@@ -71,7 +68,6 @@ export const CodeExplainer: FC<CodeExplainerProps> = ({ isSigned }) => {
           )}
         </CardFooter>
       </Card>
-      {openAuthModal && <AuthModal />}
     </>
   )
 }
